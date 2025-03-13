@@ -1,3 +1,3 @@
 #!/bin/bash
-coverage run
+coverage run -m unittest discover
 coverage report
