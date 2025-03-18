@@ -1,9 +1,10 @@
 "This is the Main script for all"
+import pandas as pd
 
-
-def main():
+def main_solver(problem_file):
     """Running the overall solver"""
-    print("This is it")
+    solution = pd.read_csv(problem_file, header=None)
+    return solution
 
 
 def possibilities_finder(array):
@@ -14,10 +15,10 @@ def possibilities_finder(array):
 
     Return: result - list of possibilities
     """
-    print(array)
-    result = []
+    full = set((1,2,3,4,5,6,7,8,9))
+    result = list(full - set(array))
     return result
 
 
 if __name__ == "__main__":
-    main()
+    main_solver("data/problem2.csv")

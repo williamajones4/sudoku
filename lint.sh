@@ -1,3 +1,3 @@
 #!/bin/bash
-pylint $(find . -name "*.py")
+pylint main.py test/test.py
 # pylint *.py
