@@ -14,7 +14,7 @@ def main_solver(problem_file):
                 potentials = row_potentials & column_potentials
                 print(potentials)
                 if len(potentials) == 1:
-                    solution.iloc[i,j] = potentials[0]
+                    solution.iloc[i,j] = potentials.pop()
     return solution
 
 
