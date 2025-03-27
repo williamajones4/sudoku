@@ -43,6 +43,20 @@ def possibilities_finder(array):
     result = list(full - set(array))
     return result
 
+def print_solution(puzzle):
+    """
+    Desc: this prints out a puzzle nicely
+
+    Args: puzzle - given any sudoku dataframe given
+
+    Return: Printable puzzle
+    """
+    p_puz = puzzle.to_string(index=False, header=False).replace('0', ' ')
+    # printable_puzzle = printable_puzzle.replace('0', ' ')
+    p_puz = p_puz[:6] + "|" + p_puz[6:14] + "|" + p_puz[14:]
+    print(p_puz)
+    return p_puz
+
 
 if __name__ == "__main__":
     main_solver(sys.argv[1])

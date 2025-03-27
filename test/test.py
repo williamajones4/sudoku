@@ -12,8 +12,10 @@ class TestPossibilities(unittest.TestCase):
     def test_main_solver(self):
         """This test is for the main sudoku solver"""
         solution = pd.read_csv('data/solution2.csv', header=None)
-        self.assertEqual(solution.equals(main.main_solver('data/problem2.csv')), True)
         self.assertEqual(solution.equals(main.main_solver('data/solution2.csv')), True)
+        self.assertEqual(solution.equals(main.main_solver('data/problem4.csv')), True)
+        self.assertEqual(solution.equals(main.main_solver('data/problem2.csv')), True)
+        
 
     def test_possibilities_finder(self):
         """This test is for possibilities_finder"""
@@ -48,18 +50,18 @@ class TestPossibilities(unittest.TestCase):
     def test_print_puzzle(self):
         """tests printing a puzzle out nicely"""
         puzzle = pd.read_csv('data/problem1.csv', header=None)
-        print( 
-            """
-            1 2 3 | 4 5 6 | 7 8 9,
-            4 5 6 | 7 8 9 | 1 2 3,
-            7 8 9 | 1 2 3 | 4 5 6,
-            _____________________,
-            1 2 3 | 4 5 6 | 7 8 9,
-            4 5 6 | 7 8 9 | 1 2 3,
-            7 8 9 | 1 2 3 | 4 5 6,
-            _____________________,
-            1 2 3 | 4 5 6 | 7 8 9,
-            4 5 6 | 7 8 9 | 1 2 3,
-            7 8 9 | 1 2 3 | 4 5 6,
-            """
-              )
+        printed_solution = """
+            7     | 5 2   |     8
+              5 6 |   8 9 | 1 2 3
+              4   | 3 6 7 |   5  
+            _____________________
+              6 2 | 7 8   |      
+            8   1 | 4     |     2
+            4 3   |   1 9 |   6  
+            _____________________
+                  |     5 |      
+            5     | 6   2 | 9 3 1
+                7 | 9 4 1 | 5    
+        """
+        print(printed_solution)
+        self.assertMultiLineEqual(printed_solution, main.print_solution(puzzle))
