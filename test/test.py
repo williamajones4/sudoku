@@ -4,6 +4,7 @@ import unittest
 import pandas as pd
 import main
 import validate
+import visualize
 
 
 class TestPossibilities(unittest.TestCase):
@@ -15,7 +16,6 @@ class TestPossibilities(unittest.TestCase):
         self.assertEqual(solution.equals(main.main_solver('data/solution2.csv')), True)
         self.assertEqual(solution.equals(main.main_solver('data/problem4.csv')), True)
         self.assertEqual(solution.equals(main.main_solver('data/problem2.csv')), True)
-        
 
     def test_possibilities_finder(self):
         """This test is for possibilities_finder"""
