@@ -2,8 +2,9 @@
 import sys
 import pandas as pd
 import validate
+import visualize
 
-def main_solver(problem_file):
+def simple_solver(problem_file):
     """Running the overall solver"""
     solution = pd.read_csv(problem_file, header=None)
     solved = False
@@ -22,14 +23,15 @@ def main_solver(problem_file):
                         solution.iloc[i,j] = potentials.pop()
                         solved_spots+=1
         if validate.correct_checker(solution):
-            print(solution)
-            return solution
+            visualize.visualize_sudoku(solution)
+            solved = True
         if solved_spots==0:
             print("Solved as much as possible")
-            print(solution)
-            return solution
+            visualize.visualize_sudoku(solution)
+            solved = True
         print(cycle)
         cycle+=1
+    return solution
 
 def possibilities_finder(array):
     """
@@ -43,20 +45,5 @@ def possibilities_finder(array):
     result = list(full - set(array))
     return result
 
-def print_solution(puzzle):
-    """
-    Desc: this prints out a puzzle nicely
-
-    Args: puzzle - given any sudoku dataframe given
-
-    Return: Printable puzzle
-    """
-    p_puz = puzzle.to_string(index=False, header=False).replace('0', ' ')
-    # printable_puzzle = printable_puzzle.replace('0', ' ')
-    p_puz = p_puz[:6] + "|" + p_puz[6:14] + "|" + p_puz[14:]
-    print(p_puz)
-    return p_puz
-
-
 if __name__ == "__main__":
-    main_solver(sys.argv[1])
+    simple_solver(sys.argv[1])

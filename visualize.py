@@ -1,5 +1,6 @@
 """This file is to define visualization functions for puzzles"""
 import sys
+import threading
 import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
@@ -21,8 +22,8 @@ def visualize_sudoku(grid):
 
     ax.set_xlim(-0.5, 8.5)
     ax.set_ylim(8.5, -0.5) # Invert y axis for correct row display
-    plt.show()
+    thread = threading.Thread(target=plt.show(), daemon=True)
+    thread.start()
 
 if __name__ == "__main__":
-    puzzle = pd.read_csv(sys.argv[1], header=None)
-    visualize_sudoku(puzzle)
+    visualize_sudoku(pd.read_csv(sys.argv[1], header=None))

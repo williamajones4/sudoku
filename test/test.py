@@ -13,9 +13,9 @@ class TestPossibilities(unittest.TestCase):
     def test_main_solver(self):
         """This test is for the main sudoku solver"""
         solution = pd.read_csv('data/solution2.csv', header=None)
-        self.assertEqual(solution.equals(main.main_solver('data/solution2.csv')), True)
-        self.assertEqual(solution.equals(main.main_solver('data/problem4.csv')), True)
-        self.assertEqual(solution.equals(main.main_solver('data/problem2.csv')), True)
+        self.assertEqual(solution.equals(main.simple_solver('data/solution2.csv')), True)
+        self.assertEqual(solution.equals(main.simple_solver('data/problem4.csv')), True)
+        self.assertEqual(solution.equals(main.simple_solver('data/problem2.csv')), True)
 
     def test_possibilities_finder(self):
         """This test is for possibilities_finder"""
@@ -63,5 +63,4 @@ class TestPossibilities(unittest.TestCase):
             5     | 6   2 | 9 3 1
                 7 | 9 4 1 | 5    
         """
-        print(printed_solution)
-        self.assertMultiLineEqual(printed_solution, main.print_solution(puzzle))
+        self.assertMultiLineEqual(printed_solution, visualize.visualize_sudoku(puzzle))
