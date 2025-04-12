@@ -5,6 +5,7 @@ import pandas as pd
 import main
 import validate
 import visualize
+import app
 
 
 class TestPossibilities(unittest.TestCase):

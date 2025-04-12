@@ -1,7 +1,9 @@
 """This file is to define visualization functions for puzzles"""
 import sys
 import threading
+import matplotlib
 import matplotlib.pyplot as plt
+# matplotlib.use("agg")
 import numpy as np
 import pandas as pd
 
@@ -22,8 +24,9 @@ def visualize_sudoku(grid):
 
     ax.set_xlim(-0.5, 8.5)
     ax.set_ylim(8.5, -0.5) # Invert y axis for correct row display
-    thread = threading.Thread(target=plt.show(), daemon=True)
-    thread.start()
+    return fig
 
 if __name__ == "__main__":
-    visualize_sudoku(pd.read_csv(sys.argv[1], header=None))
+    plot = visualize_sudoku(pd.read_csv(sys.argv[1], header=None))
+    plt.savefig('puzzle.png')
+    plot.show()

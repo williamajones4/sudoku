@@ -1,8 +1,8 @@
 "This is a simple application file to be run with Dash library"
 
 from dash import Dash, html, dcc, callback, Output, Input
-import plotly.express as px
-import pandas as pd
+# import plotly.express as px
+# import pandas as pd
 import visualize
 
 app = Dash()
@@ -13,15 +13,17 @@ app.layout = [
     html.Div([
         dcc.Upload(html.Button('Upload File'), id='upload_puzzle')
     ]),
-    html.Div(id='plot')
+    dcc.Graph(id='plot')
 ]
 
-@callback(
+@app.callback(
     Output('plot', 'figure'),
-    Input('upload_puzzle', 'contents')
+    Input('upload_puzzle', 'puzzle')
+    # State('upload_puzzle', 'filename')
 )
 def show_problem(puzzle):
     figure = visualize.visualize_sudoku(puzzle)
+    print("It got here")
     return figure
 
 if __name__ == '__main__':
